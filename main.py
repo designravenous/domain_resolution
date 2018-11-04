@@ -2,6 +2,7 @@ import sys
 import app
 import app_format
 
+
 def error_message():
     print("--- Script Error ---")
     print("* Script needs at least one file argument")
@@ -29,7 +30,6 @@ result_http = p1.http_requests()
 some_var = app_format.format_class(result_http)
 some_var.write_to_txt()
 
-#Writeing TO JSON
+#Writing TO JSON
 writer = app_format.format_class(result_http)
-json_result = writer.write_to_json()
-print(json_result)
+writer.write_to_json()
