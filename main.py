@@ -2,7 +2,6 @@ import sys
 import app
 import app_format
 
-
 def error_message():
     print("--- Script Error ---")
     print("* Script needs at least one file argument")
@@ -23,13 +22,14 @@ p1 = app.domain_list_handling(domains)
 result_http = p1.http_requests()
 
 #To call for the https methods
-#p1 = app.domain_list_handling(domains)
 #result_https = p1.https_requests()
 
 #Writing To TXT file
-some_var = app_format.format_class(result_http)
-some_var.write_to_txt()
+file_action = app_format.format_class(result_http)
+file_action.write_to_txt()
 
-#Writing TO JSON
-writer = app_format.format_class(result_http)
-writer.write_to_json()
+#Writing to CSV file
+file_action.write_to_csv()
+
+#Writeing TO JSON
+file_action.write_to_json()
