@@ -24,16 +24,9 @@ class format_class:
             outcome_list = self.dictionary_list
             count_of_search = len(outcome_list)
             outcome_list.append({"count":int(count_of_search)})
-            jsonStr = json.dumps(outcome_list, indent=2)
-            with open('domains.json', 'w+') as json_file:
-                json.dump(jsonStr, json_file)
+            with open('domains.json', 'w') as f:
+                json.dump(outcome_list, f, indent=2)
+
         
         except:
             print("Error occured to convert list to JSON (except in function)")
-        
-        return jsonStr
-
-
-
-
-        
