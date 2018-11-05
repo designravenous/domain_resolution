@@ -12,9 +12,9 @@ class format_class:
         output_file.write("--- Output Of Response ---\n")
         for item in self.dictionary_list:
             try:
-                output_file.write(str(item['name']) + "," + "http: " +str(item['http_response']) + "," + str(item['result_date'])+"\n")
+                output_file.write(str(item['name']) + "," + "http: " +str(item['http_response']) + "," + str(item['result_date'])+ "," + str(item['resolution_url']) + "\n")
             except:
-                output_file.write(str(item['name']) + "," + "https: " + str(item['https_response']) + "," + str(item['result_date'])+"\n")
+                output_file.write(str(item['name']) + "," + "https: " + str(item['https_response']) + "," + str(item['result_date'])+ "," + str(item['resolution_url']) +"\n")
         output_file.close()
 
     def write_to_json(self):
@@ -31,7 +31,8 @@ class format_class:
 
         with open('output_'+ self.tid + file_type, 'w', newline='') as f:
             csv_output = csv.writer(f)
-            csv_output.writerow(['Domain','http_response','date' ])
+            csv_output.writerow(['Domain','http_response','Date', 'Resolution URL' ])
             for item in self.dictionary_list:
-                csv_output.writerow([str(item['name']), str(item['http_response']), str(item['result_date'])])
+                csv_output.writerow([str(item['name']), str(item['http_response']), str(item['result_date']), str(item['resolution_url'])])
             csv_output.writerow(["Results: " + str(count) ])
+
