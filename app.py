@@ -15,7 +15,11 @@ class domain_list_handling:
             "result_date":""
         }
         http_var = 'http://'
-        results = []
+        results = {
+            'Domains':[],
+            'Searches':0,
+            'Response':True
+        }
         for item in self.lista:
             http_address = http_var + str(item.strip('\n'))
             try:
@@ -23,15 +27,21 @@ class domain_list_handling:
                 domain_info_item['name'] = str(item.strip('\n'))
                 domain_info_item['http_response'] = response_http.status_code
                 domain_info_item['result_date'] = self.tid
-                results.append(domain_info_item.copy())
+                results['Domains'].append(domain_info_item.copy())
         
             except:
                 print("Failed Resolution: ", item)
                 domain_info_item['name'] = str(item.strip('\n'))
                 domain_info_item['http_response'] = None
                 domain_info_item['result_date'] = self.tid
-                results.append(domain_info_item.copy())
+                results['Domains'].append(domain_info_item.copy())
                 pass
+        count = int(len(self.lista))
+        results['Searches'] = count
+        if count >= 0:
+            results['Response'] = True
+        else:
+            results['Response'] = False
         return results
 
     def https_requests(self):
@@ -59,3 +69,4 @@ class domain_list_handling:
                 results.append(domain_info_item.copy())
                 pass
         return results
+    
