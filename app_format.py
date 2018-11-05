@@ -1,17 +1,14 @@
-import datetime
 from flask import Flask, json
 import csv
 
 class format_class:
-    def __init__(self,dictionary_list):
+    def __init__(self,dictionary_list, tid):
         self.dictionary_list = dictionary_list
+        self.tid = tid
     
     def write_to_txt(self): 
-        time_var = datetime.datetime.now()
-        current_date =str(time_var.year) + "_" + str(time_var.month) + "_" + str(time_var.day)
         file_type = ".txt"
-
-        output_file = open("output" + "_" + current_date + file_type, 'w+')
+        output_file = open("output" + "_" + self.tid + file_type, 'w+')
         output_file.write("--- Output Of Response ---\n")
         for item in self.dictionary_list:
             try:
@@ -31,14 +28,15 @@ class format_class:
             print("Error occured to convert list to JSON (except in function)")
 
     def write_to_csv(self):
-        time_var = datetime.datetime.now()
-        current_date =str(time_var.year) + "_" + str(time_var.month) + "_" + str(time_var.day)
         file_type = ".csv" 
         count = len(self.dictionary_list)
 
-        with open('output_'+ current_date + file_type, 'w', newline='') as f:
+        with open('output_'+ self.tid + file_type, 'w', newline='') as f:
             csv_output = csv.writer(f)
             csv_output.writerow(['Domain','http_response','date' ])
             for item in self.dictionary_list:
                 csv_output.writerow([str(item['name']), str(item['http_response']), str(item['result_date'])])
             csv_output.writerow(["Results: " + str(count) ])
+            
+            
+            
