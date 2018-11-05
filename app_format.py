@@ -20,8 +20,6 @@ class format_class:
     def write_to_json(self):
         try:
             outcome_list = self.dictionary_list
-            count_of_search = len(outcome_list)
-            outcome_list.append({"count":int(count_of_search)})
             with open('domains.json', 'w') as f:
                 json.dump(outcome_list, f, indent=2)
         except:
@@ -37,6 +35,3 @@ class format_class:
             for item in self.dictionary_list:
                 csv_output.writerow([str(item['name']), str(item['http_response']), str(item['result_date'])])
             csv_output.writerow(["Results: " + str(count) ])
-            
-            
-            
