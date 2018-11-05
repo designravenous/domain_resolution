@@ -12,6 +12,7 @@ class domain_list_handling:
         domain_info_item = {
             "name":"test",
             "http_response":0,
+            "resolution_url":"",
             "result_date":""
         }
         http_var = 'http://'
@@ -27,6 +28,7 @@ class domain_list_handling:
                 domain_info_item['name'] = str(item.strip('\n'))
                 domain_info_item['http_response'] = response_http.status_code
                 domain_info_item['result_date'] = self.tid
+                domain_info_item['resolution_url'] = str(response_http.url)
                 results['Domains'].append(domain_info_item.copy())
         
             except:
@@ -34,6 +36,7 @@ class domain_list_handling:
                 domain_info_item['name'] = str(item.strip('\n'))
                 domain_info_item['http_response'] = None
                 domain_info_item['result_date'] = self.tid
+                domain_info_item['resolution_url'] = "N/A"
                 results['Domains'].append(domain_info_item.copy())
                 pass
         count = int(len(self.lista))
@@ -69,4 +72,3 @@ class domain_list_handling:
                 results.append(domain_info_item.copy())
                 pass
         return results
-    
