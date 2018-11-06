@@ -24,6 +24,8 @@ class format_class:
                 json.dump(outcome_list, f, indent=2)
         except:
             print("Error occured to convert list to JSON (except in function)")
+        json_string = json.dumps(outcome_list, indent=2)
+        return json_string
 
     def write_to_csv(self):
         file_type = ".csv" 
@@ -35,4 +37,3 @@ class format_class:
             for item in self.dictionary_list:
                 csv_output.writerow([str(item['name']), str(item['http_response']), str(item['result_date']), str(item['resolution_url'])])
             csv_output.writerow(["Results: " + str(count) ])
-
