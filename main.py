@@ -2,6 +2,7 @@ import sys
 import app
 import app_format
 import datetime
+from flask import Flask
 
 def error_message():
     print("--- Script Error ---")
@@ -37,7 +38,16 @@ file_action.write_to_txt()
 #Writing to CSV file
 file_action.write_to_csv()
 
-#Writing TO JSON
+#Writing TO JSON, will return a json string that we can use as API
 json_action = app_format.format_class(result_http, date_string)
-json_action.write_to_json()
+json_string = json_action.write_to_json()
 
+
+#Setup flask - REST -JSONAPI
+app = Flask(__name__)
+@app.route('/')
+def api_rest():
+    return json_string
+
+if __name__ == '__main__':
+    app.run()
