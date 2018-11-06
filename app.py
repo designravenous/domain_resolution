@@ -46,29 +46,3 @@ class domain_list_handling:
         else:
             results['Response'] = False
         return results
-
-    def https_requests(self):
-        domain_info_item = {
-            "name":"test",
-            "https_response":0,
-            "result_date":""
-        }
-        https_var = 'https://'
-        results = []
-        for item in self.lista:
-            https_address = https_var + str(item.strip('\n'))
-            try:
-                response_https = requests.get(https_address)
-                domain_info_item['name'] = str(item.strip('\n'))
-                domain_info_item['https_response'] = response_https.status_code
-                domain_info_item['result_date'] = self.tid
-                results.append(domain_info_item.copy())
-        
-            except:
-                print("Failed Resolution: ", item)
-                domain_info_item['name'] = str(item.strip('\n'))
-                domain_info_item['https_response'] = None
-                domain_info_item['result_date'] = self.tid
-                results.append(domain_info_item.copy())
-                pass
-        return results
