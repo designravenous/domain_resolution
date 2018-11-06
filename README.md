@@ -12,7 +12,8 @@ Steps:
 
 - after the script have gone through requests for each items of the text file a Flask app will be running.
 - Verify this on 'http://localhost:5000/'
-- on a seperate bash tab, run the 
+- on a seperate bash tab, run:
+python test_restAPI.py
 
 
 
