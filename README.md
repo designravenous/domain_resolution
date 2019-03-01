@@ -4,7 +4,7 @@ Python Script to get resolution inforamtion from domains http-response code, res
 This Script can export the results in txt, csv and JSON. main script also include Flask webserver, to host REST-API.
 
 Steps:
-- Make sure that all modules needed are installed
+- Install all requirements from the requirements.txt (pip install -r requirements.txt)
 - Include a .txt file with domains in seperate rows
 
   example:
