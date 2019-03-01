@@ -11,4 +11,4 @@ try:
 except:
     print("Error")
 
-print(data['Searches'])
+print("Total number of searches: {}".format(data['Searches']))
